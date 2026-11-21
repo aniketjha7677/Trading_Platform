@@ -1,0 +1,137 @@
+.ap-page {
+  padding: 28px 36px 56px;
+  max-width: 1100px;
+}
+
+/* top banner */
+.ap-hero {
+  background: linear-gradient(135deg, #fff3ee, #eef5fd);
+  border-radius: 14px;
+  padding: 30px 34px;
+  margin-bottom: 28px;
+}
+
+.ap-hero-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #e8452c;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.ap-hero h2 {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+.ap-hero p {
+  margin: 0;
+  max-width: 620px;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* cards */
+.ap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.ap-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 22px 22px 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ap-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.ap-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.ap-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #f4f7fb;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.ap-badge {
+  font-size: 0.7rem;
+  color: #b9690a;
+  background: #fff4e0;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.ap-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+.ap-card p {
+  margin: 0 0 18px;
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.ap-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ap-bar {
+  flex: 1;
+  height: 6px;
+  background: #eef0f3;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ap-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9f43, #e8452c);
+  border-radius: 999px;
+}
+
+.ap-soon {
+  font-size: 0.72rem;
+  color: #999;
+  white-space: nowrap;
+}
+
+@media (max-width: 800px) {
+  .ap-page {
+    padding: 20px 16px 40px;
+  }
+  .ap-hero {
+    padding: 22px 20px;
+  }
+}

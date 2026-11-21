@@ -1,0 +1,266 @@
+.tw-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 24, 34, 0.45);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: tw-fade 0.15s ease-out;
+}
+
+@keyframes tw-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tw-window {
+  --accent: #387ed1;
+  --accent-dark: #2f6fbb;
+  --accent-soft: #eaf2fc;
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-size: 0.9rem;
+  animation: tw-pop 0.18s ease-out;
+}
+
+.tw-theme-sell {
+  --accent: #e8452c;
+  --accent-dark: #cf3a22;
+  --accent-soft: #fdeeeb;
+}
+
+@keyframes tw-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* header */
+.tw-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.tw-action {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.22);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.tw-stock {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.tw-tag {
+  margin-left: auto;
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+/* body */
+.tw-body {
+  padding: 20px 22px 6px;
+}
+
+.tw-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #8a8a8a;
+  margin-bottom: 6px;
+}
+
+.tw-price-box {
+  background: var(--accent-soft);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.tw-price-box .tw-label {
+  grid-column: 1 / -1;
+  margin-bottom: 2px;
+}
+
+.tw-price {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #2b2b2b;
+}
+
+.tw-live {
+  font-size: 0.72rem;
+  color: #1f9d5d;
+}
+
+.tw-live-off {
+  color: #c0392b;
+}
+
+/* quantity stepper */
+.tw-stepper {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.tw-stepper:focus-within {
+  border-color: var(--accent);
+}
+
+.tw-stepper button {
+  width: 44px;
+  border: none;
+  background: #f5f5f5;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.tw-stepper button:hover {
+  background: #ebebeb;
+}
+
+.tw-stepper input {
+  flex: 1;
+  text-align: center;
+  border: none;
+  outline: none;
+  font-size: 1.05rem;
+  padding: 10px 0;
+  min-width: 0;
+}
+
+.tw-stepper input:disabled {
+  background: #fafafa;
+  color: #aaa;
+}
+
+/* summary */
+.tw-summary {
+  border-top: 1px dashed #e2e2e2;
+  padding-top: 8px;
+}
+
+.tw-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  color: #666;
+}
+
+.tw-row-strong {
+  font-weight: 600;
+  color: #2b2b2b;
+  border-top: 1px solid #eee;
+  margin-top: 4px;
+  padding-top: 11px;
+}
+
+.tw-negative {
+  color: #c0392b;
+}
+
+.tw-message {
+  margin: 12px 0 0;
+  padding: 9px 12px;
+  background: #fdecea;
+  border-left: 3px solid #e74c3c;
+  color: #b03a2e;
+  font-size: 0.8rem;
+  border-radius: 3px;
+}
+
+.tw-info {
+  margin: 10px 0 0;
+  font-size: 0.74rem;
+  color: #9a9a9a;
+}
+
+.tw-notice {
+  text-align: center;
+  color: #777;
+  margin: 24px 0 14px;
+}
+
+.tw-login {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 26px;
+  padding: 9px 26px;
+  background: #387ed1;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* footer */
+.tw-footer {
+  display: flex;
+  gap: 10px;
+  padding: 16px 22px 20px;
+}
+
+.tw-confirm,
+.tw-cancel {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.tw-confirm {
+  flex: 2;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 500;
+}
+
+.tw-confirm:hover:not(:disabled) {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.tw-confirm:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.tw-cancel {
+  flex: 1;
+  background: #ececec;
+  color: #555;
+}
+
+.tw-cancel:hover {
+  background: #e0e0e0;
+}

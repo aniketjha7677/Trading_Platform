@@ -1,0 +1,282 @@
+.fp-page {
+  padding: 28px 36px 56px;
+  max-width: 1100px;
+}
+
+.fp-muted {
+  color: #8a8a8a;
+  font-size: 0.85rem;
+  margin: 8px 0 0;
+}
+
+/* header */
+.fp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.fp-title h2 {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+.fp-title p {
+  margin: 0;
+  color: #8a8a8a;
+  font-size: 0.85rem;
+}
+
+.fp-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* buttons */
+.fp-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.fp-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fp-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fp-btn-green {
+  background: #2eb872;
+}
+.fp-btn-green:hover:not(:disabled) {
+  background: #27a366;
+}
+
+.fp-btn-blue {
+  background: #387ed1;
+}
+.fp-btn-blue:hover:not(:disabled) {
+  background: #2f6fbb;
+}
+
+.fp-btn-grey {
+  background: #e3e3e3;
+  color: #444;
+}
+
+/* messages */
+.fp-banner {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+}
+
+.fp-banner-success {
+  background: #e8f7ef;
+  border-left: 4px solid #2eb872;
+  color: #1c7a4b;
+}
+
+.fp-banner-error {
+  background: #fdecea;
+  border-left: 4px solid #e74c3c;
+  color: #b03a2e;
+}
+
+/* add / withdraw panel */
+.fp-panel {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  max-width: 460px;
+}
+
+.fp-panel h4 {
+  margin: 0 0 14px;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+.fp-panel-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d5d5d5;
+  border-radius: 6px;
+  padding: 0 12px;
+}
+
+.fp-panel-row:focus-within {
+  border-color: #387ed1;
+}
+
+.fp-rupee {
+  color: #777;
+  margin-right: 6px;
+}
+
+.fp-panel-row input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px 0;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.fp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.fp-chip {
+  border: 1px solid #cfe3f7;
+  background: #f1f7fd;
+  color: #387ed1;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.fp-chip:hover {
+  background: #e2effb;
+}
+
+.fp-panel-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* summary cards */
+.fp-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.fp-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px 22px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border-top: 4px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fp-card-green {
+  border-top-color: #2eb872;
+}
+.fp-card-orange {
+  border-top-color: #ff9f43;
+}
+.fp-card-blue {
+  border-top-color: #387ed1;
+}
+
+.fp-card-label {
+  font-size: 0.82rem;
+  color: #8a8a8a;
+}
+
+.fp-card-value {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+.fp-card-green .fp-card-value {
+  color: #1f9d5d;
+}
+
+/* detail boxes */
+.fp-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 22px;
+}
+
+.fp-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 22px 26px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.fp-box h3 {
+  margin: 0 0 14px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+.fp-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.fp-row:last-child {
+  border-bottom: none;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+.fp-commodity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.fp-commodity p {
+  color: #8a8a8a;
+  font-size: 0.9rem;
+  margin: 0 0 12px;
+}
+
+.fp-empty {
+  text-align: center;
+  padding: 60px 0;
+  color: #8a8a8a;
+}
+
+.fp-empty p {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 800px) {
+  .fp-page {
+    padding: 20px 16px 40px;
+  }
+  .fp-grid {
+    grid-template-columns: 1fr;
+  }
+}
