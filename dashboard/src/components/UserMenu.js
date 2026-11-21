@@ -5,7 +5,7 @@ import axios from "axios";
 import "./UserMenu.css";
 
 const API = "http://localhost:3002";
-const LOGIN_URL = "http://localhost:3000/login";
+const LOGIN_URL = process.env.REACT_APP_LOGIN_URL || "http://localhost:3000/login";
 
 const UserMenu = () => {
   const [user, setUser] = useState(null);

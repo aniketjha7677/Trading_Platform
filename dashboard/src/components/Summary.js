@@ -84,7 +84,7 @@ const Summary = () => {
       <div className="username">
         <h6>Please log in to see your dashboard</h6>
         <a
-          href="http://localhost:3000/login"
+          href={process.env.REACT_APP_LOGIN_URL || "http://localhost:3000/login"}
           className="btn btn-blue"
           style={{ display: "inline-block", marginTop: "16px" }}
         >

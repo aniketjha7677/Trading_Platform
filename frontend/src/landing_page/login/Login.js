@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const API_URL = "http://localhost:3002";
 // change this to the port your dashboard app runs on
-const DASHBOARD_URL = "http://localhost:3001";
+const DASHBOARD_URL = process.env.REACT_APP_DASHBOARD_URL || "http://localhost:3001";
 
 function Login() {
   const [inputValue, setInputValue] = useState({
