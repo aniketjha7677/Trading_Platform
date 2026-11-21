@@ -2,6 +2,22 @@ const User = require("../model/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
 
+// In production the frontend, dashboard and backend live on different domains,
+// so the browser only sends the login cookie if it is SameSite=None and Secure.
+const isProd = process.env.NODE_ENV === "production";
+const cookieOptions = {
+  withCredentials: true,
+  httpOnly: false,
+  sameSite: isProd ? "none" : "lax",
+  secure: isProd,
+  maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days, same as the token
+};
+const clearCookieOptions = {
+  httpOnly: false,
+  sameSite: cookieOptions.sameSite,
+  secure: cookieOptions.secure,
+};
+
 module.exports.Signup = async (req, res) => {
   try {
     const { email, password, username, createdAt } = req.body || {};
@@ -17,10 +33,7 @@ module.exports.Signup = async (req, res) => {
     const user = await User.create({ email, password, username, createdAt });
     const token = createSecretToken(user._id);
 
-    res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
-    });
+    res.cookie("token", token, cookieOptions);
 
     res.status(201).json({
       message: "User signed up successfully",
@@ -59,10 +72,7 @@ module.exports.Login = async (req, res) => {
 
     const token = createSecretToken(user._id);
 
-    res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
-    });
+    res.cookie("token", token, cookieOptions);
 
     res
       .status(200)
@@ -74,6 +84,6 @@ module.exports.Login = async (req, res) => {
 };
 
 module.exports.Logout = (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token", clearCookieOptions);
   res.json({ message: "Logged out", success: true });
 };

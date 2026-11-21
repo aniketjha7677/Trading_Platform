@@ -23,9 +23,17 @@ const uri = process.env.MONGO_URL;
 
 const app = express();
 
+// comma separated list of the frontend and dashboard addresses
+const allowedOrigins = (
+    process.env.CLIENT_ORIGINS || "http://localhost:3000,http://localhost:3001"
+)
+    .split(",")
+    .map((o) => o.trim())
+    .filter(Boolean);
+
 app.use(
     cors({
-        origin: ["http://localhost:3000", "http://localhost:3001"],
+        origin: allowedOrigins,
         credentials: true,
     })
 );
@@ -357,6 +365,9 @@ app.post('/funds/withdraw', requireAuth, async (req, res) => {
         res.status(500).json({ message: "Failed to withdraw funds" });
     }
 });
+
+// simple check used to wake up / monitor the hosted server
+app.get("/health", (req, res) => res.send("ok"));
 
 app.listen(PORT, () => {
     console.log("app started");
