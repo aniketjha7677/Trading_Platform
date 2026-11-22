@@ -60,9 +60,31 @@ const SYMBOL_OVERRIDES = { HUL: "HINDUNILVR" };
 const toYahooSymbol = (name) => `${SYMBOL_OVERRIDES[name] || name}.NS`;
 
 // ---- live quotes, with a small cache so short internet drops don't break trading ----
-const QUOTE_FRESH_MS = 10 * 1000;      // reuse a quote for 10 seconds
+const QUOTE_FRESH_MS = 20 * 1000;      // reuse a quote for 20 seconds
 const QUOTE_STALE_MS = 5 * 60 * 1000;  // if Yahoo is unreachable, accept a quote up to 5 minutes old
 const quoteCache = {};
+
+// Fallback for servers where Yahoo blocks the batch quote call:
+// one "chart" request per symbol (it needs no cookie or crumb).
+async function fetchViaChart(name) {
+    const result = await yahooFinance.chart(
+        toYahooSymbol(name),
+        { period1: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000), interval: "1d" },
+        { validateResult: false }
+    );
+
+    const closes = (result.quotes || [])
+        .map((q) => q.close)
+        .filter((c) => typeof c === "number");
+    const price = result.meta?.regularMarketPrice ?? closes[closes.length - 1];
+    if (typeof price !== "number") return null;
+
+    // day change: latest price against the close before the latest trading day
+    const previous = closes.length >= 2 ? closes[closes.length - 2] : null;
+    const percent = previous ? ((price - previous) / previous) * 100 : 0;
+
+    return { price, percent };
+}
 
 async function fetchQuotes(names) {
     const now = Date.now();
@@ -79,6 +101,7 @@ async function fetchQuotes(names) {
     });
 
     if (needed.length > 0) {
+        // 1) one batch request for all symbols
         try {
             const bySymbol = {};
             needed.forEach((n) => {
@@ -98,16 +121,41 @@ async function fetchQuotes(names) {
                     quoteCache[name] = {
                         price: q.regularMarketPrice,
                         percent: q.regularMarketChangePercent || 0,
-                        time: now,
+                        time: Date.now(),
                     };
                     result[name] = quoteCache[name];
                 }
             });
         } catch (err) {
-            console.error("Quotes error:", err.cause?.code || err.message);
+            console.error("Quotes batch error:", err.cause?.code || err.message);
         }
 
-        // Yahoo failed or skipped a symbol: fall back to a recent cached quote
+        // 2) anything still missing: try the chart endpoint, a few at a time
+        const missing = needed.filter((n) => !result[n]);
+        for (let i = 0; i < missing.length; i += 5) {
+            const chunk = missing.slice(i, i + 5);
+            const settled = await Promise.allSettled(chunk.map(fetchViaChart));
+            let anySuccess = false;
+
+            settled.forEach((s, idx) => {
+                const name = chunk[idx];
+                if (s.status === "fulfilled" && s.value) {
+                    quoteCache[name] = { ...s.value, time: Date.now() };
+                    result[name] = quoteCache[name];
+                    anySuccess = true;
+                } else if (s.status === "rejected") {
+                    console.error(
+                        `Chart error for ${name}:`,
+                        s.reason?.cause?.code || s.reason?.message
+                    );
+                }
+            });
+
+            // if a whole group failed, Yahoo is blocking us: stop instead of waiting on every symbol
+            if (!anySuccess) break;
+        }
+
+        // 3) still nothing: fall back to a recent cached quote
         needed.forEach((n) => {
             const cached = quoteCache[n];
             if (!result[n] && cached && now - cached.time < QUOTE_STALE_MS) {
