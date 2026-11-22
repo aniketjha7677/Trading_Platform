@@ -178,15 +178,15 @@ function Footer() {
                     }}
                 >
                     <p>
-                        Zerodha Broking Ltd.: Member of NSE​ &​ BSE – SEBI Registration no.:
-                        INZ000031633 CDSL: Depository services through Zerodha Securities
+                        VeloTrade Broking Ltd.: Member of NSE​ &​ BSE – SEBI Registration no.:
+                        INZ000031633 CDSL: Depository services through VeloTrade Securities
                         Pvt. Ltd. – SEBI Registration no.: IN-DP-100-2015 Commodity Trading
-                        through Zerodha Commodities Pvt. Ltd. MCX: 46025 – SEBI Registration
-                        no.: INZ000038238 Registered Address: Zerodha Broking Ltd.,
+                        through VeloTrade Commodities Pvt. Ltd. MCX: 46025 – SEBI Registration
+                        no.: INZ000038238 Registered Address: VeloTrade Broking Ltd.,
                         #153/154, 4th Cross, Dollars Colony, Opp. Clarence Public School,
                         J.P Nagar 4th Phase, Bengaluru - 560078, Karnataka, India. For any
                         complaints pertaining to securities broking please write to
-                        complaints@zerodha.com, for DP related to dp@zerodha.com. Please
+                        complaints@VeloTrade.com, for DP related to dp@VeloTrade.com. Please
                         ensure you carefully read the Risk Disclosure Document as prescribed
                         by SEBI | ICF
                     </p>
